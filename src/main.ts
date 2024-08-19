@@ -2,16 +2,16 @@ var audioCtx: AudioContext | undefined = undefined;
 var masterComp: DynamicsCompressorNode | undefined = undefined;
 var masterGain: GainNode | undefined = undefined;
 var masterDist: WaveShaperNode | undefined = undefined;
-var sinGain: GainNode | undefined;
-var sqrGain: GainNode | undefined;
-var sawGain: GainNode | undefined;
-var triGain: GainNode | undefined;
+var sinGain: GainNode | undefined = undefined;
+var sqrGain: GainNode | undefined = undefined;
+var sawGain: GainNode | undefined = undefined;
+var triGain: GainNode | undefined = undefined;
 var customGain: GainNode | undefined;
 var customWave: PeriodicWave | undefined = undefined;
 var muted: boolean = true;
 
 function getDistortionCurve(amount?: number): Float32Array {
-    const k: number = typeof amount === "number" ? amount : 50;
+    const k: number = typeof amount === 'number' ? amount : 50;
     const n_samples: number = 44100;
     const curve: Float32Array = new Float32Array(n_samples);
     const deg: number = Math.PI / 180;
@@ -109,22 +109,22 @@ document.onkeydown = (e) => {
             const freq: number = noteMap[keyLabel].frequency;
 
             let sine: OscillatorNode = audioCtx!.createOscillator();
-            sine.type = <OscillatorType>"sine";
+            sine.type = <OscillatorType>'sine';
             sine.frequency.setValueAtTime(freq, audioCtx!.currentTime);
             sine.connect(sinGain!).connect(masterDist!).connect(masterComp!);
 
             let square: OscillatorNode = audioCtx!.createOscillator();
-            square.type = <OscillatorType>"square";
+            square.type = <OscillatorType>'square';
             square.frequency.setValueAtTime(freq, audioCtx!.currentTime);
             square.connect(sqrGain!).connect(masterDist!).connect(masterComp!);
 
             let sawtooth: OscillatorNode = audioCtx!.createOscillator();
-            sawtooth.type = <OscillatorType>"sawtooth";
+            sawtooth.type = <OscillatorType>'sawtooth';
             sawtooth.frequency.setValueAtTime(freq, audioCtx!.currentTime);
             sawtooth.connect(sawGain!).connect(masterDist!).connect(masterComp!);
         
             let triangle: OscillatorNode = audioCtx!.createOscillator();
-            triangle.type = <OscillatorType>"triangle";
+            triangle.type = <OscillatorType>'triangle';
             triangle.frequency.setValueAtTime(freq, audioCtx!.currentTime);
             triangle.connect(triGain!).connect(masterDist!).connect(masterComp!);
             
@@ -294,7 +294,7 @@ function paintWaveform(real: number[], imag: number[]) {
     let canvas = <HTMLCanvasElement>document.getElementById('custom-waveform-canvas');
     const canvasCtx = canvas.getContext('2d');
     if (!canvasCtx) {
-        console.error("Error; <canvas> context not available.");
+        console.error('Error; <canvas> context not available.');
         return;
     }
     const width = canvas.width;
@@ -413,6 +413,6 @@ window.addEventListener('load', function() {
         customHarmonicsSlider.value = String(4);
 
     } catch (error) {
-        alert("The JavaScript Web Audio API is not supported by this browser.");
+        alert('The JavaScript Web Audio API is not supported by this browser.');
     }
 });
