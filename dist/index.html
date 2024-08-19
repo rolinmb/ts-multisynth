@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"/>
+    <title>ts-multisynth</title>
+  </head>
+  <body>
+    <header>
+      <h1>ts-multisynth</h1>
+    </header>
+    <main>
+      <div id="keyboard-reference">
+        <h2>KEYBOARD REFERENCE</h2>
+        <p>Flats/Sharps Keys:</p>
+        <table id="fs-key-table">
+          <thead>
+            <th>'2'</th>
+            <th>'3'</th>
+            <th>'5'</th>
+            <th>'6'</th>
+            <th>'7'</th>
+            <th>'9'</th>
+            <th>'0'</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>C#4/Db4</td>
+              <td>D#4/Eb4</td>
+              <td>F#4/Gb4</td>
+              <td>G#4/Ab4</td>
+              <td>A#4/Bb4</td>
+              <td>C#5/Db5</td>
+              <td>D#5/Eb5</td>
+              </tr>
+          </tbody>
+        </table>
+        <p>Natural Keys:</p>
+        <table id="natural-key-table">
+          <thead>
+            <th>'Q'</th>
+            <th>'W'</th>
+            <th>'E'</th>
+            <th>'R'</th>
+            <th>'T'</th>
+            <th>'Y'</th>
+            <th>'U'</th>
+            <th>'I'</th>
+            <th>'O'</th>
+            <th>'P'</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>C4</td>
+              <td>D4</td>
+              <td>E4</td>
+              <td>F4</td>
+              <td>G4</td>
+              <td>A4</td>
+              <td>B4</td>
+              <td>C5</td>
+              <td>D5</td>
+              <td>E5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="note-press-wrap">
+        <h3>Keyboard Status:</h3>
+        <p id="key-view"></p>
+        <h3>Mapped Notes Status:</h3>
+        <p id="note-press-view"></p>
+      </div>
+      <button id="mute-unmute-btn">unmute</button>
+      <div id="sliders-wrap">
+        <ul id="master-sliders-list">
+          <li class="slider-container">
+            <span class="param-view">MASTER GAIN: <p id="master-gain-view">0.125</p></span>
+            <input id="master-gain-slider" class="master-slider" type="range" min="0" max=".25" value="0.125" step="0.01" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">MASTER COMPRESSOR THRESHOLD: <p id="master-threshold-view">-50</p></span>
+            <input id="master-threshold-slider" class="master-slider" type="range" min="-50" max="0" value="-50" step="1" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">MASTER COMPRESSOR KNEE: <p id="master-knee-view">40</p></span>
+            <input id="master-knee-slider" class="master-slider" type="range" min="0" max="100" value="40" step="1" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">MASTER COMPRESSOR RATIO: <p id="master-ratio-view">12</p></span>
+            <input id="master-ratio-slider" class="master-slider" type="range" min="1" max="12" value="12" step="0.25" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">MASTER COMPRESSOR ATTACK: <p id="master-attack-view">0</p></span>
+            <input id="master-attack-slider" class="master-slider" type="range" min="0" max="1000" value="0" step="0.25" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">MASTER COMPRESSOR RELEASE: <p id="master-release-view">0.25</p></span>
+            <input id="master-release-slider" class="master-slider" type="range" min="0" max="1000" value="0.25" step="0.25" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">MASTER DISTORTION: <p id="master-distortion-view">0</p></span>
+            <input id="master-distortion-slider" class="master-slider" type="range" min="0" max="300" value="0" step="1" />
+          </li>
+        </ul>
+        <ul id="waveform-sliders-list">
+          <li class="slider-container">
+            <span class="param-view">Sine Waveform Gain: <p id="sine-gain-view">0.125</p></span>
+            <input id="sine-gain-slider" class="gain-slider" type="range" min="0" max="0.25" value="0.125" step="0.01" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">Square Waveform Gain: <p id="square-gain-view">0.125</p></span>
+            <input id="square-gain-slider" class="waveform-slider" type="range" min="0" max="0.25" value="0.125" step="0.01"  />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">Sawtooth Waveform Gain: <p id="sawtooth-gain-view" >0.125</p></span>
+            <input id="sawtooth-gain-slider" class="waveform-slider" type="range" min="0" max="0.25" value="0.125" step="0.01" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <span class="param-view">Triangle Waveform Gain: <p id="triangle-gain-view">0.125</p></span>
+            <input id="triangle-gain-slider" class="waveform-slider" type="range" min="0" max="0.25" value="0.125" step="0.01" />
+          </li>
+          <br />
+          <li class="slider-container">
+            <div>
+              <span class="param-view">Custom Waveform Gain: <p id="custom-gain-view">0</p></span>
+              <input id="custom-gain-slider" type="range" min="0" max="0.25" value="0" step="0.01" />
+              <div id="waveform-editor">
+                <span class="param-view"># of Harmonics <p id="custom-harmonics-view">4</p></span>
+                <input id="custom-harmonics-slider" type="range" min="3" max="15" value="4" step="1">
+                <br />
+                <button id="gen-custom-wave-btn">Generate New Custom Waveform</button>
+              </div>
+              <h4>CUSTOM WAVEFORM</h4>
+              <canvas id="custom-waveform-canvas" width="800" height="200"></canvas>
+            </div>
+          </li>
+          <br />
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>
